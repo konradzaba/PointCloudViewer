@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PointCloudViewer.View"
+             xmlns:viewModels="clr-namespace:PointCloudViewer.ViewModel; assembly=PointCloudViewer"
+             x:Class="PointCloudViewer.View.MainPage">
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <StackLayout Padding="5">
+        <Label Text="Point Cloud Viewer" FontSize="Large" TextColor="DarkCyan"
+           HorizontalOptions="Center"/>
+        <Label Text="Proof of concept" HorizontalOptions="Center"/>
+        <Grid HorizontalOptions="CenterAndExpand"
+                VerticalOptions="FillAndExpand">
+            <Image Source="pointCloudScreen.png" />
+        </Grid>
+        <!--<Image Source="pointCloudScreen.png" 
+               HorizontalOptions="Center"
+               VerticalOptions="Start"/>-->
+
+        <StackLayout Padding="20">
+            <Button Text="Start Visualization" 
+                Clicked="OnChoosePointCloudButtonClicked"/>
+            <Button Text="Settings" 
+                Clicked="OnOptionsButtonClicked"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

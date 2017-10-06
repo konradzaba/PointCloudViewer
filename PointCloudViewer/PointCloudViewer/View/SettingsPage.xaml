@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PointCloudViewer.ViewModel; assembly=PointCloudViewer"
+             x:Class="PointCloudViewer.View.SettingsPage">
+    <ContentPage.BindingContext>
+        <viewModels:SettingsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout Padding="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                            <Image>
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="ImageSource">
+                                        <OnPlatform.iOS>
+                                            <FileImageSource File="settings/icon_performance.png"/>
+                                        </OnPlatform.iOS>
+                                        <OnPlatform.Android>
+                                            <FileImageSource File="icon_performance.png"/>
+                                        </OnPlatform.Android>
+                                        <OnPlatform.WinPhone>
+                                            <FileImageSource File="settings/icon_performance.png"/>
+                                        </OnPlatform.WinPhone>
+                                    </OnPlatform>
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Performance" FontSize="Large" />
+                        </StackLayout>
+                        <Label Text="Draw Distance:" Grid.Column="0" Grid.Row="1"/>
+                        <Slider Grid.Column="1" Grid.Row="1" Minimum="0" Maximum="100"
+                                Value="{Binding DrawDistance, Mode=TwoWay}"/>
+                        <Label Text="Level of Detail:" Grid.Column="0" Grid.Row="2"/>
+                        <Slider Grid.Column="1" Grid.Row="2" Minimum="0" Maximum="100"
+                                Value="{Binding LevelOfDetail, Mode=TwoWay}"/>
+                        <Label Text="Color Quality:" Grid.Column="0" Grid.Row="3"/>
+                        <Slider Grid.Column="1" Grid.Row="3" Minimum="0" Maximum="95"
+                                Value="{Binding ColorQuality, Mode=TwoWay}"/>
+                        <Label Text="Limit FPS:" Grid.Column="0" Grid.Row="4"/>
+                        <Switch Grid.Column="1" Grid.Row="4"
+                                IsToggled="{Binding LimitFPS, Mode=TwoWay}"/>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                            <Image>
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="ImageSource">
+                                        <OnPlatform.iOS>
+                                            <FileImageSource File="settings/icon_display.png"/>
+                                        </OnPlatform.iOS>
+                                        <OnPlatform.Android>
+                                            <FileImageSource File="icon_display.png"/>
+                                        </OnPlatform.Android>
+                                        <OnPlatform.WinPhone>
+                                            <FileImageSource File="settings/icon_display.png"/>
+                                        </OnPlatform.WinPhone>
+                                    </OnPlatform>
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Presentation" FontSize="Large"/>
+                        </StackLayout>
+                        <Label Text="Background Color:" Grid.Column="0" Grid.Row="1"/>
+                        <Picker ItemsSource="{Binding BackgroundColorsSource}" 
+                                SelectedItem="{Binding SelectedBackgroundColor}" 
+                                Grid.Column="1" Grid.Row="1"/>
+                        <Label Text="Camera Speed:" Grid.Column="0" Grid.Row="2"/>
+                        <Slider Grid.Column="1" Grid.Row="2" Minimum="0" Maximum="50"
+                                Value="{Binding CameraSpeed, Mode=TwoWay}"/>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                            <Image>
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="ImageSource">
+                                        <OnPlatform.iOS>
+                                            <FileImageSource File="settings/icon_debug.png"/>
+                                        </OnPlatform.iOS>
+                                        <OnPlatform.Android>
+                                            <FileImageSource File="icon_debug.png"/>
+                                        </OnPlatform.Android>
+                                        <OnPlatform.WinPhone>
+                                            <FileImageSource File="settings/icon_debug.png"/>
+                                        </OnPlatform.WinPhone>
+                                    </OnPlatform>
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Debug" FontSize="Large"/>
+                        </StackLayout>
+                        <Label Text="Show Console:" Grid.Column="0" Grid.Row="1"/>
+                        <Switch Grid.Column="1" Grid.Row="1"
+                                IsToggled="{Binding ShowConsole, Mode=TwoWay}"/>
+                        <Label Text="Show FPS:" Grid.Column="0" Grid.Row="2"/>
+                        <Switch Grid.Column="1" Grid.Row="2"
+                                IsToggled="{Binding ShowFPS, Mode=TwoWay}"/>
+                    </Grid>
+
+                </StackLayout>
+            </ScrollView>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
