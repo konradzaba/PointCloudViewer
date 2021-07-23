@@ -37,6 +37,17 @@ namespace PointCloudViewer.Engine
         {
             _xRes = width;
             _yRes = height;
+            Construct();
+        }
+        public Engine()
+        {
+            _xRes = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            _yRes = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            Construct();
+        }
+
+        private void Construct()
+        {
             _graphics = new GraphicsDeviceManager(this);
             //_graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 
