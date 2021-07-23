@@ -31,7 +31,7 @@ namespace PointCloudViewer.Engine
         private KeyboardState _oldKeyState;
         private IList<Color> _allRealColors;
         private Dictionary<Color,List<ColoredPoint>> _points;
-
+        private RenderTarget2D _renderTarget;
         public Engine()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -40,6 +40,7 @@ namespace PointCloudViewer.Engine
             //it would be better to check if it is mobile
             _graphics.IsFullScreen = !EngineSettings.Instance.IsDeviceWithKeyboard;
             TargetElapsedTime = TimeSpan.FromSeconds(1.0 / EngineSettings.Instance.LimitFps);//24 fps (1/25 => 0.04)
+
             this.IsFixedTimeStep = true;
             Content.RootDirectory = "Content";
         }
@@ -52,6 +53,9 @@ namespace PointCloudViewer.Engine
         /// </summary>
         protected override void Initialize()
         {
+            var xRes = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width * EngineSettings.Instance.ResolutionScaling;
+            var yRes = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * EngineSettings.Instance.ResolutionScaling;
+            _renderTarget = new RenderTarget2D(GraphicsDevice, (int)xRes, (int)yRes);
             var processor = FactoryProcessing.GetFileProcessor(FileProcessing.Abstract.SupportedFile.XYZ);
             var points = processor.GetPointsFromFile($"Data/{EngineSettings.Instance.PointCloudName}.xyz");
             points = NormalizePoints(points, processor.GetMinPoint());
@@ -252,10 +256,12 @@ namespace PointCloudViewer.Engine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.SetRenderTarget(_renderTarget);
             GraphicsDevice.Clear(EngineSettings.Instance.BackgroundColor);
-
             _point2dSystem.Draw(gameTime);
-            _interface.DrawInterface(GraphicsDevice, gameTime);
+            GraphicsDevice.SetRenderTarget(null);
+
+            _interface.DrawInterface(GraphicsDevice, _renderTarget, gameTime);
 
             base.Draw(gameTime);
         }

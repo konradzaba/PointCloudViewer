@@ -2,6 +2,7 @@
 {
     public class Settings
     {
+        public int Resolution;
         public int CameraSpeed;
         public int ColorQuality;
         public int DrawDistance;

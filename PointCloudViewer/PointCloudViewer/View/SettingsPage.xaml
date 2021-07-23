@@ -17,6 +17,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -41,17 +42,20 @@
                             </Image>
                             <Label Text="Performance" FontSize="Large" />
                         </StackLayout>
-                        <Label Text="Draw Distance:" Grid.Column="0" Grid.Row="1"/>
-                        <Slider Grid.Column="1" Grid.Row="1" Minimum="0" Maximum="100"
-                                Value="{Binding DrawDistance, Mode=TwoWay}"/>
-                        <Label Text="Level of Detail:" Grid.Column="0" Grid.Row="2"/>
+                        <Label Text="Resolution:" Grid.Column="0" Grid.Row="1"/>
+                        <Slider Grid.Column="1" Grid.Row="1" Maximum="100" Minimum="20"
+                                Value="{Binding Resolution, Mode=TwoWay}"/>
+                        <Label Text="Draw Distance:" Grid.Column="0" Grid.Row="2"/>
                         <Slider Grid.Column="1" Grid.Row="2" Minimum="0" Maximum="100"
+                                Value="{Binding DrawDistance, Mode=TwoWay}"/>
+                        <Label Text="Level of Detail:" Grid.Column="0" Grid.Row="3"/>
+                        <Slider Grid.Column="1" Grid.Row="3" Minimum="0" Maximum="100"
                                 Value="{Binding LevelOfDetail, Mode=TwoWay}"/>
-                        <Label Text="Color Quality:" Grid.Column="0" Grid.Row="3"/>
-                        <Slider Grid.Column="1" Grid.Row="3" Minimum="0" Maximum="95"
+                        <Label Text="Color Quality:" Grid.Column="0" Grid.Row="4"/>
+                        <Slider Grid.Column="1" Grid.Row="4" Minimum="0" Maximum="95"
                                 Value="{Binding ColorQuality, Mode=TwoWay}"/>
-                        <Label Text="Limit FPS:" Grid.Column="0" Grid.Row="4"/>
-                        <Switch Grid.Column="1" Grid.Row="4"
+                        <Label Text="Limit FPS:" Grid.Column="0" Grid.Row="5"/>
+                        <Switch Grid.Column="1" Grid.Row="5"
                                 IsToggled="{Binding LimitFPS, Mode=TwoWay}"/>
                     </Grid>
 

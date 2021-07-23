@@ -94,10 +94,11 @@ namespace PointCloudViewer.Engine.Graphics
         /// </summary>
         /// <param name="graphicsDevice"></param>
         /// <param name="gameTime"></param>
-        public void DrawInterface(GraphicsDevice graphicsDevice, GameTime gameTime)
+        public void DrawInterface(GraphicsDevice graphicsDevice, RenderTarget2D renderTarget, GameTime gameTime)
         {
             _sprite.Begin();
-            if(!EngineSettings.Instance.IsDeviceWithKeyboard)
+            _sprite.Draw(renderTarget, new Rectangle(0, 0, _xRes, _yRes), Color.White);
+            if (!EngineSettings.Instance.IsDeviceWithKeyboard)
                 _sprite.Draw(_uiTexture, new Rectangle(0, 0, _xRes, _yRes), Color.White);
             DrawFps(gameTime, _sprite);
             DrawConsole(_sprite);

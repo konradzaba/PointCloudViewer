@@ -26,6 +26,7 @@ namespace PointCloudViewer.Engine
             IsDeviceWithKeyboard = settings.IsDeviceWithKeyboard;
             if (settings.WereInitialized)
             {
+                ResolutionScaling = settings.Resolution / 100f;
                 LimitFps = settings.LimitFPS ? 30 : 60;
                 ViewDistance = 90 + settings.DrawDistance;
                 LevelOfDetailDistance = settings.LevelOfDetail / 100f;
@@ -41,6 +42,7 @@ namespace PointCloudViewer.Engine
             }
         }
 
+        public float ResolutionScaling = 0.75f;
         public int LimitFps = 30;
         public float ViewDistance = 120f;//90f-190f
         public float LevelOfDetailDistance = 0.4f;//0%-100%

@@ -19,6 +19,7 @@ namespace PointCloudViewer.ViewModel
             if (!_isInitialized)
             {
                 LimitFPS = true;
+                Resolution = 75;
                 DrawDistance = 30;
                 LevelOfDetail = 40;
                 CameraSpeed = 15;
@@ -34,6 +35,21 @@ namespace PointCloudViewer.ViewModel
         }
         private static bool _isDeviceWithKeyboard;
         private static bool _isInitialized = false;
+
+
+        private static int _resolution;
+        public int Resolution
+        {
+            get { return _resolution; }
+            set
+            {
+                if (_resolution != value)
+                {
+                    _resolution = value;
+                    OnPropertyChanged("Resolution");
+                }
+            }
+        }
 
         private static int _drawDistance;
         public int DrawDistance
@@ -174,6 +190,7 @@ namespace PointCloudViewer.ViewModel
             var chosenColor = engineManager.GetColors().Single(x => x.Name == _selectedBackgroundColor);
             return new Domain.Settings
             {
+                Resolution = _resolution,
                 DrawDistance = _drawDistance,
                 ColorQuality = _colorQuality,
                 CameraSpeed = _cameraSpeed,
