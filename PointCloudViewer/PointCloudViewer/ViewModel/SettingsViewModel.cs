@@ -24,7 +24,7 @@ namespace PointCloudViewer.ViewModel
                 LevelOfDetail = 40;
                 CameraSpeed = 15;
                 ColorQuality = 25;
-                ShowConsole = true;
+                ShowConsole = false;
                 ShowFPS = true;
                 SelectedBackgroundColor = "Black";
                 _isInitialized = true;

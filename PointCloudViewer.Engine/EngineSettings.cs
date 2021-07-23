@@ -48,7 +48,7 @@ namespace PointCloudViewer.Engine
         public float LevelOfDetailDistance = 0.4f;//0%-100%
         public float CameraSpeed = 0.15f;//0-0.5f
         public int ColorQuality = 30;//5-100
-        public bool ShowConsole = true;
+        public bool ShowConsole = false;
         public bool ShowFps = true;
         public Microsoft.Xna.Framework.Color BackgroundColor = Microsoft.Xna.Framework.Color.Black;
         public bool IsDeviceWithKeyboard = true;
