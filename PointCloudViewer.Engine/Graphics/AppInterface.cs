@@ -25,14 +25,14 @@ namespace PointCloudViewer.Engine.Graphics
         private Matrix _sizeTransformation;
         private IEnumerable<VirtualButton> _buttons;
 
-        public AppInterface(GraphicsDevice device, SpriteFont font, Texture2D uiTexture)
+        public AppInterface(GraphicsDevice device, SpriteFont font, Texture2D uiTexture, int xRes, int yRes)
         {
             _displayFps = 0f;
             _sprite = new SpriteBatch(device);
             _font = font;
             _uiTexture = uiTexture;
-            _xRes = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            _yRes = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            _xRes = xRes;
+            _yRes = yRes;
 
             #region prepare virtual buttons controls
             Vector2 baseScreenSize = new Vector2(800, 480);

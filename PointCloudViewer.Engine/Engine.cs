@@ -32,8 +32,11 @@ namespace PointCloudViewer.Engine
         private IList<Color> _allRealColors;
         private Dictionary<Color,List<ColoredPoint>> _points;
         private RenderTarget2D _renderTarget;
-        public Engine()
+        private int _xRes, _yRes;
+        public Engine(int height, int width)
         {
+            _xRes = width;
+            _yRes = height;
             _graphics = new GraphicsDeviceManager(this);
             //_graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 
@@ -53,9 +56,7 @@ namespace PointCloudViewer.Engine
         /// </summary>
         protected override void Initialize()
         {
-            var xRes = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width * EngineSettings.Instance.ResolutionScaling;
-            var yRes = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * EngineSettings.Instance.ResolutionScaling;
-            _renderTarget = new RenderTarget2D(GraphicsDevice, (int)xRes, (int)yRes);
+            _renderTarget = new RenderTarget2D(GraphicsDevice, (int)(_xRes * EngineSettings.Instance.ResolutionScaling), (int)(_yRes * EngineSettings.Instance.ResolutionScaling));
             var processor = FactoryProcessing.GetFileProcessor(FileProcessing.Abstract.SupportedFile.XYZ);
             var points = processor.GetPointsFromFile($"Data/{EngineSettings.Instance.PointCloudName}.xyz");
             points = NormalizePoints(points, processor.GetMinPoint());
@@ -142,7 +143,7 @@ namespace PointCloudViewer.Engine
         {
             var font = Content.Load<SpriteFont>("font");
             var uiDisplay = Content.Load<Texture2D>("interface");
-            _interface = new AppInterface(GraphicsDevice, font, uiDisplay);
+            _interface = new AppInterface(GraphicsDevice, font, uiDisplay, _xRes, _yRes);
 
             /*
              * Points are displayed as 2D so-called billboards. 
