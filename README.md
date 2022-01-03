@@ -12,4 +12,8 @@ This is only a simple proof of concept application, that shows professional usag
 - Dynamic point cloud loading (to support larger files)
 - Support for LAS files,
 - Automatic quality settings depending on devices
+- Graceful exit on Android (right now you need to force closing the app)
 - and more
+
+You can check the compiled version for Android devices here: https://play.google.com/store/apps/details?id=com.konradzaba.PointCloudViewer
+The UWP version for Windows must be compiled manually from the source code.
